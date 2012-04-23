@@ -5,11 +5,19 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
+import controllers.WebController
 
 
 
 
-object Application extends Controller{
+trait App{
+//  this: UserRepositoryComponent with UserFactoryComponent with ReservationFactoryComponent with ResourceFactoryComponent=>
+
+}
+
+
+
+object Application extends WebController{
 
     val itemForm = Form(
     tuple("name" -> nonEmptyText,
@@ -54,8 +62,8 @@ object Application extends Controller{
 	}
 	
 	def viewReservations = Action{
-	  //get list of all reservations and return as argument for Ok
-	  Ok(views.html.viewReservations(""))
+	  //get list of all reservations and return as argument for 
+	  Ok(views.html.viewReservations("", reservations))
 	}
 	
 	def deleteReservation(id: Int) = Action{
