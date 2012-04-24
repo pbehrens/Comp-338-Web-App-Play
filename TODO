@@ -1,4 +1,6 @@
 TODO List
+Check that out for some stuff with user authentication
+https://github.com/playframework/Play20/tree/master/samples/scala/zentasks
 
 User Authentication and the stuff with case classes updating user model
 the dependency injection
@@ -10,3 +12,4 @@ cleaning up the views
 externalizing the text of everything using the language features
 form validation
 updating each action in Application.scala so the right arguments are being passed to the views
+make sure all the routes are right
