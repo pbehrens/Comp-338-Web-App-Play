@@ -1,7 +1,8 @@
-package domain
+package models
 package objects
 
-class Role(var isGuest:Boolean = true, var isMember:Boolean = false, var isStaff:Boolean = false, var isAdmin:Boolean = false) {
+
+case class Role(var isGuest:Boolean = true, var isMember:Boolean = false, var isStaff:Boolean = false, var isAdmin:Boolean = false) {
 	def makeMember(){isMember = true}
 	def makeStaff(){isStaff = true}
 	def makeAdmin(){isAdmin = true}

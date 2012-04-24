@@ -1,9 +1,10 @@
-package domain
+package models
 package services
+import models.objects._
 
-import domain.objects._
 
-trait UserRepositoryComponent {
+
+case class UserRepositoryComponent() {
   
   def userRepository: UserRepository
   

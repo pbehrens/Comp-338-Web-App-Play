@@ -1,7 +1,7 @@
-package domain
+package models
 package services.impl
 
-import domain.services._
+import models.services._
 
 trait DefaultUserServiceComponent extends UserServiceComponent {
   this: UserRepositoryComponent =>

@@ -1,7 +1,7 @@
-package domain
+package models
 package services
-
-import domain.objects._
+ 
+import models.objects._
 import java.util.Date
 
 trait ReservationFactoryComponent {

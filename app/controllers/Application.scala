@@ -5,31 +5,24 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-import controllers.WebController
+import models._
+import models.objects._
+import models.services._
+import models.services.impl._
 
 
 
 
-trait App{
-//  this: UserRepositoryComponent with UserFactoryComponent with ReservationFactoryComponent with ResourceFactoryComponent=>
 
-}
+trait ApplicationController extends Controller {
+	this: ReservationFactoryComponent with ResourceFactoryComponent with UserFactoryComponent =>
 
-
-
-object Application extends WebController{
-
+  
     val itemForm = Form(
     tuple("name" -> nonEmptyText,
     "description" -> nonEmptyText)
     )
-    
-    val loginForm = Form(
-    		tuple(
-    			"email" -> nonEmptyText,
-    			"password" -> nonEmptyText
-    		) verifying("Invalid user name or password", { 
-    		case (e, p) => User.authenticate(e,p).isDefined }))
+
   
     
     val reservationForm = Form(
@@ -39,10 +32,16 @@ object Application extends WebController{
     		)
     )
     
-	def index = Action {
-	  Ok(views.html.index(""))
+	
+    def index = Action {
+      
+      var u = Role(true,true,true,true)
+      val resource1 = resourceFactory.create(54,"peter", "peter")
+      
+	  Ok(views.html.index("", resource1.name))
 	  
 	}
+	
 	def guest = Action{
 	  //get list of all items
 	  Ok(views.html.guest(""))
@@ -63,14 +62,14 @@ object Application extends WebController{
 	
 	def viewReservations = Action{
 	  //get list of all reservations and return as argument for 
-	  Ok(views.html.viewReservations("", reservations))
+	  Ok(views.html.viewReservations(""))
 	}
 	
 	def deleteReservation(id: Int) = Action{
 	  //delete reservation
 		Redirect(routes.Application.viewReservations)
 	}
-	def addReservation(resourceReserved: Resource, member: User, time: Date ) = Action{
+	def addReservation(resourceReserved: Resource, member: User) = Action{
 	  //add reservation to depot generate id for it and add to repo
 	  
 	Redirect(routes.Application.viewReservations)
@@ -80,12 +79,12 @@ object Application extends WebController{
 	  //pull up reservation by ID and send info to view so forms can be populated then use addReservation to add it into the repo
 	  //not sure if you want to delete the reservation then just create a new one
 	  
-		Ok(views.html.editReservation(user,date,reservation))	
+		Ok(views.html.editReservation("", itemForm))	
 	}
 	
 	def viewItems = Action{
 	 //get list of all items and return in Ok method
-	  Ok(views.html.viewItems("", itemForm))
+	  Ok(views.html.viewItems(""))
 	}
 	
 	def deleteItem(id: String) = Action{
@@ -97,7 +96,7 @@ object Application extends WebController{
 	def editItem(id: String) = Action{
 	  //TODO create form for edting item and grab item by id number
 	  
-	  Ok(views.html.viewItems("", item))
+	  Ok(views.html.viewItems(""))
 	}
 	def addItem(name: String, description: String) = Action{
 	 //add reservation to depot generate id for it and add to repo
@@ -108,7 +107,7 @@ object Application extends WebController{
 	def viewMembers() = Action{
 	  //grab list of members from user repo
 	  
-	  Ok(views.html.viewMembers("", userList))
+	  Ok(views.html.viewMembers(""))
 
 	}
 	
@@ -127,6 +126,9 @@ object Application extends WebController{
 	def addMember() = Action{
 	  
 	Redirect(routes.Application.viewMembers("succes or not success string"))
-	}
-	
+	}	
 }
+
+
+object Application extends ApplicationController with DefaultReservationFactoryComponent with
+DefaultResourceFactoryComponent with DefaultUserFactoryComponent

@@ -1,8 +1,8 @@
-package domain
+package models
 package services.impl
 
-import domain.services._
-import domain.objects._
+import models.services._
+import models.objects._
 
 
 trait DefaultEmailServiceComponent extends EmailServiceComponent {

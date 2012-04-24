@@ -1,8 +1,8 @@
-package domain
+package models
 package services.impl
 
-import domain.objects._
-import domain.services.ResourceFactoryComponent
+import models.objects._
+import models.services.ResourceFactoryComponent
 
 trait DefaultResourceFactoryComponent extends ResourceFactoryComponent {
 
