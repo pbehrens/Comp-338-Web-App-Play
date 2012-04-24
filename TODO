@@ -1,0 +1,12 @@
+TODO List
+
+User Authentication and the stuff with case classes updating user model
+the dependency injection
+CRUD stuff
+choosing the correct in memory way to handle things
+organizing all the html views
+touching up the html
+cleaning up the views
+externalizing the text of everything using the language features
+form validation
+updating each action in Application.scala so the right arguments are being passed to the views

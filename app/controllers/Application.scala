@@ -55,24 +55,34 @@ val loginForm = Form(
     )
   }
   
-  
-  
+  //================Forms===================
+  val reservationForm = Form(
+    	tuple(
+    		"time" -> text,
+    		"resource" -> text,
+    		"member" -> text
+    		)
+    )
+    
+  val itemForm = Form(
+    tuple("name" -> nonEmptyText,
+    "description" -> nonEmptyText)
+    )
+    
+    val memberEditForm = Form(
+    tuple("email" -> nonEmptyText,
+    	  "firstName" -> nonEmptyText,
+    	  "lastName" -> nonEmptyText,
+    	  "role" -> nonEmptyText)  
+    )
   
   
   
   //+++++++++++++++Main Web Things
   
-    val itemForm = Form(
-    tuple("name" -> nonEmptyText,
-    "description" -> nonEmptyText)
-    )
+    
 
-    val reservationForm = Form(
-    	tuple(
-    		"time" -> text,
-    		"resource" -> text
-    		)
-    )
+    
     
     def index = Action {
 	  Ok(views.html.index("", "test")) 
@@ -90,12 +100,12 @@ val loginForm = Form(
 	
 	def staff = Action{
 	  //main page for editing items and reservations
-	  Ok(views.html.staff(""))  
+	  Ok(views.staff.html.staff(""))  
 	}
 	
 	def viewReservations = Action{
 	  //get list of all reservations and return as argument for 
-	  Ok(views.html.viewReservations(""))
+	  Ok(views.staff.html.viewReservations(""))
 	}
 	
 	def deleteReservation(id: Int) = Action{
@@ -116,7 +126,7 @@ val loginForm = Form(
 	
 	def viewItems = Action{
 	 //get list of all items and return in Ok method
-	  Ok(views.html.viewItems(""))
+	  Ok(views.staff.html.viewItems(""))
 	}
 	
 	def deleteItem(id: Int) = Action{

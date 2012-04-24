@@ -1,0 +1,26 @@
+@(message: String)
+@import helper._
+
+@main("") {
+    <div class="container secret-container">
+	  <div class="row">
+	    <div class="span12">
+			<ul>
+			<li><!-- put in member ID -->
+			@form(routes.Application.deleteMember(1)) {
+            <input type="submit" value="Delete">               
+             }                            
+            </li>
+            <li><!-- put in member ID -->
+			@form(routes.Application.editMember(1)) {
+            <input type="submit" value="Edit">               
+             }                            
+            </li>
+			
+			
+			
+			</ul>			
+		</div>
+	  </div>
+	</div> <!-- /container -->
+}
