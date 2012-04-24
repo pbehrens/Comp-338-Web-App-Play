@@ -4,7 +4,7 @@ import models.objects._
 
 
 
-case class UserRepositoryComponent() {
+trait UserRepositoryComponent {
   
   def userRepository: UserRepository
   

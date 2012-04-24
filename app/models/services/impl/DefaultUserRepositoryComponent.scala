@@ -131,6 +131,7 @@ trait DefaultUserRepositoryComponent extends UserRepositoryComponent {
     	val resourceOption = resourceMap.get(itemID)
     	if(!resourceOption.isEmpty && requester.role.isMember){
     	  val resource = resourceOption.get
+    	  
     	  val reservation = reservationFactory.create(resource, requester)
     		resource.reservations = resource.reservations :+ reservation
     		resourceMap.put(resource.resourceID, resource)

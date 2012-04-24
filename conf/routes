@@ -10,16 +10,20 @@ GET		/member						controllers.Application.member
 GET		/staff						controllers.Application.staff
 GET		/staff/reservations			controllers.Application.viewReservations
 GET		/staff/items				controllers.Application.viewItems
-GET		/staff/memebers				controllers.Application.viewMembers
+GET		/staff/members				controllers.Application.viewMembers
 
 
-POST    /staff/items/id/delete            	controllers.Application.deleteItem
-POST    /staff/reservations/id/delete     	controllers.Application.deleteReservation
-POST    /staff/member/id/delete     		controllers.Application.deleteMember
+POST    /staff/items/:id/delete            	controllers.Application.deleteItem(id: Int)
+POST    /staff/reservations/:id/delete     	controllers.Application.deleteReservation(id: Int)
+POST    /staff/members/:id/delete     		controllers.Application.deleteMember(id: Int)
 
 POST    /staff/items        				controllers.Application.addItem
 POST    /staff/reservations        			controllers.Application.addReservation
-POST    /staff/memebers        				controllers.Application.addMember
+POST    /staff/members        				controllers.Application.addMember
+
+POST	/staff/items/:id/edit				controllers.Application.editItem(id: Int)
+#POST	/staff/reservations/:user/edit		controllers.Application.editReservation(user: String) #i dont know what to do for this one
+POST	/staff/members/:id/edit				controllers.Application.editMember(id: Int)
 
 
 

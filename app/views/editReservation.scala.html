@@ -1,4 +1,4 @@
-@(message: String , itemForm: Form[(String, String)])
+@(message: String)
 @import helper._
 
 @main("") {
@@ -7,14 +7,14 @@
 	    <div class="span12">
 			<ul>
 			<li><!-- put in item ID -->
-			@form(routes.Application.deleteItem()) {
+			@form(routes.Application.deleteReservation(1)) {
             <input type="submit" value="Delete">               
              }                            
             </li>
-            <li><!-- put in item ID -->
-			@form(routes.Application.editItem()) {
+            <li><!-- put in item ID and also fill in the edit reservation part -->
+			
             <input type="submit" value="Edit">               
-             }                            
+                                         
             </li>
 			
 			

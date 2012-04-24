@@ -1,4 +1,4 @@
-@(message: String , taskForm: Form[String])
+@(message: String)
 @import helper._
 
 @main("") {
@@ -7,18 +7,15 @@
 	    <div class="span12">
 			<ul>
 			<li><!-- put in item ID -->
-			@form(routes.Application.deleteItem()) {
+			@form(routes.Application.deleteMember(1)) {
             <input type="submit" value="Delete">               
              }                            
             </li>
             <li><!-- put in item ID -->
-			@form(routes.Application.editItem()) {
+			@form(routes.Application.editMember(1)) {
             <input type="submit" value="Edit">               
              }                            
             </li>
-			
-			
-			
 			</ul>			
 		</div>
 	  </div>

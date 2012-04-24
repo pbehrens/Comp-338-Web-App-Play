@@ -15,7 +15,7 @@ import models.services.impl._
 
 
 trait ApplicationController extends Controller {
-	this: ReservationFactoryComponent with ResourceFactoryComponent with UserFactoryComponent =>
+//	this: UserRepositoryComponent with UserFactoryComponent =>
 
   
     val itemForm = Form(
@@ -35,10 +35,9 @@ trait ApplicationController extends Controller {
 	
     def index = Action {
       
-      var u = Role(true,true,true,true)
-      val resource1 = resourceFactory.create(54,"peter", "peter")
+     
       
-	  Ok(views.html.index("", resource1.name))
+	  Ok(views.html.index("", "test"))
 	  
 	}
 	
@@ -69,36 +68,37 @@ trait ApplicationController extends Controller {
 	  //delete reservation
 		Redirect(routes.Application.viewReservations)
 	}
-	def addReservation(resourceReserved: Resource, member: User) = Action{
+	def addReservation() = Action{
 	  //add reservation to depot generate id for it and add to repo
 	  
 	Redirect(routes.Application.viewReservations)
 	}
 	
-	def editReservation(reservationID: Int) = Action{
-	  //pull up reservation by ID and send info to view so forms can be populated then use addReservation to add it into the repo
-	  //not sure if you want to delete the reservation then just create a new one
-	  
-		Ok(views.html.editReservation("", itemForm))	
-	}
+//	def editReservation(id: Int) = Action{
+//	  //pull up reservation by ID and send info to view so forms can be populated then use addReservation to add it into the repo
+//	  //not sure if you want to delete the reservation then just create a new one
+//	  
+//		Ok(views.html.editReservation(""))	
+//	}
 	
 	def viewItems = Action{
 	 //get list of all items and return in Ok method
 	  Ok(views.html.viewItems(""))
 	}
 	
-	def deleteItem(id: String) = Action{
+	def deleteItem(id: Int) = Action{
 	  //grab item from repo and remove it then redirect
 	Redirect(routes.Application.viewItems)
 	
 	}
 	
-	def editItem(id: String) = Action{
+	def editItem(id: Int) = Action{
 	  //TODO create form for edting item and grab item by id number
 	  
-	  Ok(views.html.viewItems(""))
+	  Ok(views.html.editItem(""))
 	}
-	def addItem(name: String, description: String) = Action{
+	
+	def addItem() = Action{
 	 //add reservation to depot generate id for it and add to repo
 	  
 	Redirect(routes.Application.viewItems)
@@ -111,13 +111,12 @@ trait ApplicationController extends Controller {
 
 	}
 	
-	def deleteMemeber(id: String) = Action{
+	def deleteMember(id: Int) = Action{
 	  //grab member from repo and remove it then redirect
 	Redirect(routes.Application.viewMembers)
-	
 	}
 	
-	def editMember(id: String) = Action{
+	def editMember(id: Int) = Action{
 	  //TODO create form for edting member and grab member by id number
 	  
 	  Ok(views.html.viewItems(""))
@@ -125,10 +124,9 @@ trait ApplicationController extends Controller {
 	
 	def addMember() = Action{
 	  
-	Redirect(routes.Application.viewMembers("succes or not success string"))
+	Redirect(routes.Application.viewMembers)
 	}	
 }
 
 
-object Application extends ApplicationController with DefaultReservationFactoryComponent with
-DefaultResourceFactoryComponent with DefaultUserFactoryComponent
+object Application extends ApplicationController
