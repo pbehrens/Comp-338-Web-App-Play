@@ -3,6 +3,7 @@ package objects
 
 import play.db.jpa._
 
+case class User(email: String, name: String, password: String)
 
 trait User {
   //TODO is this the best way to do this? I made these all vars so the AdminService could modify Users...replace with new User instance
@@ -15,6 +16,13 @@ trait User {
     (this.userID == check.userID) && (this.email == check.email) && (this.firstName == check.firstName) && (this.lastName == check.lastName) &&
       (this.lastName == check.lastName) && (this.role == check.role)
   }
+  
+    /**
+   * Authenticate a User.
+   */
+  def authenticate(email: String, password: String): Option[User]
+  
+  
 }
 
 object User{
