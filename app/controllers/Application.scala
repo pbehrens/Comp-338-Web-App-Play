@@ -53,7 +53,7 @@ trait Secured extends AuthenticationServiceComponent {
 
   def username(request: RequestHeader) = request.session.get(Security.username)
 
-  def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Application.login)
+  def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Auth.login)
 
   def withAuth(f: => String => Request[AnyContent] => Result) = {
     Security.Authenticated(username, onUnauthorized) { user =>

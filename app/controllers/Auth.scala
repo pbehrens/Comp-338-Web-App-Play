@@ -11,7 +11,7 @@ import models.services.impl._
 trait AuthController extends Controller {
 	this: AuthenticationServiceComponent=>
 	  
-val loginForm = Form(
+val form = Form(
     tuple(
       "email" -> text,
       "password" -> text
@@ -24,14 +24,14 @@ val loginForm = Form(
    * Login page.
    */
   def login = Action { implicit request =>
-    Ok(views.html.login(loginForm))
+    Ok(views.html.login(form))
   }
 
   /**
    * Handle login form submission.
    */
   def authenticate = Action { implicit request =>
-    loginForm.bindFromRequest.fold(
+    form.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
       user => Redirect(routes.Application.index).withSession("email" -> user._1)
     )
@@ -40,11 +40,11 @@ val loginForm = Form(
   /**
    * Logout and clean the session.
    */
-//  def logout = Action {
-//    Redirect(routes.ApplicationController.login).withNewSession.flashing(
-//      "success" -> "You've been logged out"
-//    )
-//  }
+  def logout = Action {
+    Redirect(routes.Auth.login).withNewSession.flashing(
+      "success" -> "You've been logged out"
+    )
+  }
 }
 
 object Auth extends AuthController with DefaultUserRepositoryComponent

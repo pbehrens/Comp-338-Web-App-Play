@@ -15,3 +15,15 @@ updating each action in Application.scala so the right arguments are being passe
 make sure all the routes are right
 change reservation to have id
 add impl to email service component
+
+
+in login.scala.html
+
+            @form.globalError.map { error =>
+                <p class="error">
+                    @error.message
+                </p>
+            } 
+            
+            check example
+            
