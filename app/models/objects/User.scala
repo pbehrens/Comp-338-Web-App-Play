@@ -3,12 +3,12 @@ package objects
 
 import play.db.jpa._
 
-case class User(email: String, name: String, password: String)
 
 trait User {
   //TODO is this the best way to do this? I made these all vars so the AdminService could modify Users...replace with new User instance
   def userID: Int
   def email: String
+  def password: String
   def firstName: String
   def lastName: String
   def role: Role
@@ -32,6 +32,7 @@ object User{
 object NullUser extends User{
 	var userID = -1
 	var email = ""
+	var password = "'();!0n#"
 	var firstName = ""
 	var lastName = ""
 	var role = new Role(false) //not a guest. Everything else defaults.

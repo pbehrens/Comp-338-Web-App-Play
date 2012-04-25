@@ -4,6 +4,7 @@ package objects
 import java.util.Date
 
 trait Reservation {
+  val reservationID: Int
   val resourceReserved: Resource
   val currentmember: User
   val time: Date

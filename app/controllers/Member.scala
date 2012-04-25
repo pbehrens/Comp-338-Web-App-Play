@@ -12,14 +12,14 @@ import models.services.impl._
 
 
 trait MemberController extends Controller with Secured {
+  this: MemberServiceComponent =>
  
   
   //================Forms===================
   val reservationForm = Form(
     	tuple(
     		"time" -> text,
-    		"resource" -> text,
-    		"member" -> text
+    		"resource" -> text
     		)
     )
      
@@ -34,22 +34,34 @@ trait MemberController extends Controller with Secured {
 //++++++++++++++++Actions+++++++++++++++++++++
     def viewReservations = Action{
 
+    Ok(views.html.index(""))
+
 	}
 	
-	def deleteReservation(id: Int) = Action{
+	def deleteReservation() = Action{
+
+	Ok(views.html.index(""))
 
 	}
 	
 	def makeReservation() = Action{
+    Ok(views.html.index(""))
 
 	}
 		
 	def viewItems = Action{
+    Ok(views.html.index(""))
 	
 	}
 	
 	def editUserInfo = Action{
+    Ok(views.html.index(""))
+	
 	}
 }
 
-object Member extends MemberController
+object Member extends MemberController with DefaultMemberServiceComponent
+  with DefaultUserRepositoryComponent
+  with DefaultUserFactoryComponent
+  with DefaultResourceFactoryComponent
+  with DefaultReservationFactoryComponent

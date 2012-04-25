@@ -5,36 +5,50 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
+import models.services._
+import models.services.impl._
 
-object Auth extends Controller {
-
-  val loginForm = Form(
+trait AuthController extends Controller {
+	this: AuthenticationServiceComponent=>
+	  
+val loginForm = Form(
     tuple(
       "email" -> text,
       "password" -> text
     ) verifying ("Invalid email or password", result => result match {
-      case (email, password) => check(email, password)
+      case (email, password) => authenticationService.authenticate(email, password).isDefined
     })
   )
 
-  def check(username: String, password: String) = {
-    (username == "admin" && password == "1234")  
-  }
-
+  /**
+   * Login page.
+   */
   def login = Action { implicit request =>
-    Ok(html.login(loginForm))
+    Ok(views.html.login(loginForm))
   }
 
+  /**
+   * Handle login form submission.
+   */
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
-      formWithErrors => BadRequest(html.login(formWithErrors)),
-      user => Redirect(routes.Application.index).withSession(Security.username -> user._1)
+      formWithErrors => BadRequest(views.html.login(formWithErrors)),
+      user => Redirect(routes.Application.index).withSession("email" -> user._1)
     )
   }
 
-  def logout = Action {
-    Redirect(routes.Auth.login).withNewSession.flashing(
-      "success" -> "You are now logged out."
-    )
-  }
+  /**
+   * Logout and clean the session.
+   */
+//  def logout = Action {
+//    Redirect(routes.ApplicationController.login).withNewSession.flashing(
+//      "success" -> "You've been logged out"
+//    )
+//  }
 }
+
+object Auth extends AuthController with DefaultUserRepositoryComponent
+  with DefaultUserFactoryComponent
+  with DefaultResourceFactoryComponent
+  with DefaultReservationFactoryComponent
+  with DefaultAuthenticationServiceComponent

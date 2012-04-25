@@ -15,51 +15,19 @@ import models.services.impl._
 
 
 trait ApplicationController extends Controller with Secured {
-//	this: UserRepositoryComponent with UserFactoryComponent =>
+	this: UserRepositoryComponent with UserFactoryComponent with AuthenticationServiceComponent=>
 	
    
 //===========Authentication================//
   
-val loginForm = Form(
-    tuple(
-      "email" -> text,
-      "password" -> text
-    ) verifying ("Invalid email or password", result => result match {
-      case (email, password) => User.authenticate(email, password).isDefined
-    })
-  )
 
-  /**
-   * Login page.
-   */
-  def login = Action { implicit request =>
-    Ok(html.login(loginForm))
-  }
-
-  /**
-   * Handle login form submission.
-   */
-  def authenticate = Action { implicit request =>
-    loginForm.bindFromRequest.fold(
-      formWithErrors => BadRequest(html.login(formWithErrors)),
-      user => Redirect(routes.Projects.index).withSession("email" -> user._1)
-    )
-  }
-
-  /**
-   * Logout and clean the session.
-   */
-  def logout = Action {
-    Redirect(routes.Application.login).withNewSession.flashing(
-      "success" -> "You've been logged out"
-    )
-  }
   
 
   //+++++++++++++++Main Navigation Items++++++++++++++++++++++
    
   def index = Action {
-	  Ok(views.html.index("", "test")) 
+    
+	  Ok(views.html.index("")) 
 	}
 	
 	def guest = Action{
@@ -74,18 +42,18 @@ val loginForm = Form(
 	
 	def staff = Action{
 	  //main page for editing items and reservations
-	  Ok(views.staff.html.staff(""))  
+	  Ok(views.html.staffpublic(""))  
 	}
 }
 
 /**
  * Provide security features
  */
-trait Secured {
+trait Secured extends AuthenticationServiceComponent {
 
   def username(request: RequestHeader) = request.session.get(Security.username)
 
-  def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Auth.login)
+  def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Application.login)
 
   def withAuth(f: => String => Request[AnyContent] => Result) = {
     Security.Authenticated(username, onUnauthorized) { user =>
@@ -98,10 +66,14 @@ trait Secured {
    * You will need to implement UserDAO.findOneByUsername
    */
   def withUser(f: User => Request[AnyContent] => Result) = withAuth { username => implicit request =>
-    UserDAO.findOneByUsername(username).map { user =>
+    authenticationService.findUser(username).map { user =>
       f(user)(request)
     }.getOrElse(onUnauthorized(request))
   }
 }
 
-object Application extends ApplicationController
+object Application extends ApplicationController with DefaultUserRepositoryComponent
+  with DefaultUserFactoryComponent
+  with DefaultResourceFactoryComponent
+  with DefaultReservationFactoryComponent
+  with DefaultAuthenticationServiceComponent

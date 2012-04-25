@@ -2,19 +2,22 @@ package models
 package services
 import models.objects._
 
-
-
 trait UserRepositoryComponent {
   
   def userRepository: UserRepository
   
   trait UserRepository {
     //changed the addResource definition to match the default implementation
+    //TODO remove authorization parameters
     def getAllUsers: List[User]
+    def removeUser(user: User): Unit
+    def removeUser(userID: Int): Unit
+    def removeUser(email: String): Unit
     def removeAllUsers
     def getUsers(lastName: String): List[User]
     def getUsers(lastName: String, firstName: String): List[User]
     def getUser(email: String): Option[User]
+    def addUser(user: User): Option[User]
     def addUser(userID: Int, email: String, firstName: String, lastName: String, role: Role): Option[User]
     def requestMembership(requestee: User): Unit
     def addMembership(newMember: User, verifyingStaff: User): Boolean

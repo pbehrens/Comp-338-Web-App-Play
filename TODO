@@ -13,3 +13,5 @@ externalizing the text of everything using the language features
 form validation
 updating each action in Application.scala so the right arguments are being passed to the views
 make sure all the routes are right
+change reservation to have id
+add impl to email service component

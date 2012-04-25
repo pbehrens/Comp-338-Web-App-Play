@@ -41,16 +41,16 @@ trait StaffController extends Controller with Secured {
     
     def viewReservations = Action{
 	  //get list of all reservations and return as argument for 
-	  Ok(views.staff.html.viewReservations(""))
+	  Ok(views.html.staff.viewReservations(""))
 	}
 	
 	def deleteReservation(id: Int) = Action{
 	  //delete reservation
-		Redirect(routes.Application.viewReservations)
+		Redirect(routes.Staff.viewReservations)
 	}
 	def addReservation() = Action{
 	  //add reservation to depot generate id for it and add to repo 
-	Redirect(routes.Application.viewReservations)
+	Redirect(routes.Staff.viewReservations)
 	}
 	
 //	def editReservation(id: Int) = Action{
@@ -62,44 +62,44 @@ trait StaffController extends Controller with Secured {
 	
 	def viewItems = Action{
 	 //get list of all items and return in Ok method
-	  Ok(views.staff.html.viewItems(""))
+	  Ok(views.html.staff.viewItems(""))
 	}
 	
 	def deleteItem(id: Int) = Action{
 	  //grab item from repo and remove it then redirect
-	Redirect(routes.Application.viewItems)
+	Redirect(routes.Staff.viewItems)
 	}
 	
 	def editItem(id: Int) = Action{
 	  //TODO create form for edting item and grab item by id number
 	  
-	  Ok(views.html.editItem(""))
+	  Ok(views.html.staff.editItem(""))
 	}
 	
 	def addItem() = Action{
 	 //add reservation to depot generate id for it and add to repo
 	  
-	Redirect(routes.Application.viewItems)
+	Redirect(routes.Staff.viewItems)
 	}
 	
 	def viewMembers() = Action{
 	  //grab list of members from user repo
-	  Ok(views.html.viewMembers(""))
+	  Ok(views.html.staff.viewMembers(""))
 	}
 	
 	def deleteMember(id: Int) = Action{
 	  //grab member from repo and remove it then redirect
-	Redirect(routes.Application.viewMembers)
+	Redirect(routes.Staff.viewMembers)
 	}
 	
 	def editMember(id: Int) = Action{
 	  //TODO create form for edting member and grab member by id number
 	  
-	  Ok(views.html.viewItems(""))
+	  Ok(views.html.staff.viewItems(""))
 	}
 	
 	def addMember() = Action{ 
-	Redirect(routes.Application.viewMembers)
+	Redirect(routes.Staff.viewMembers)
 	}	 
 }
 

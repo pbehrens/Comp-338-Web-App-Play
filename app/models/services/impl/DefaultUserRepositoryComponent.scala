@@ -33,6 +33,18 @@ trait DefaultUserRepositoryComponent extends UserRepositoryComponent {
     
     def getAllUsers: List[User] = this.map.values.toList
     
+    def removeUser(user: User): Unit = {
+      map.remove(user.email)
+    }
+    
+     def removeUser(userID: Int): Unit = {
+      map.remove(this.getAllUsers.filter(_.userID == userID)(0).email)
+    } 
+    
+     def removeUser(email: String): Unit = {
+      map.remove(email)
+    }
+     
     def removeAllUsers = {map.clear}
 
     def getUsers(lastName: String): List[User] = this.map.values.filter(_.lastName == lastName).toList
@@ -43,14 +55,22 @@ trait DefaultUserRepositoryComponent extends UserRepositoryComponent {
     
     def getUser(email: String): Option[User] = this.map.get(email)
     
-    def addUser(userID: Int, email: String, firstName: String, lastName: String, role: Role): Option[User] = {
-    	if(!this.map.contains(email)){
-    		val user = userFactory.create(userID, email, firstName, lastName, role)
-    		this.map += email -> user
+    def addUser(user: User): Option[User] = {
+    	if(!this.map.contains(user.email)){
+    		this.map += user.email -> user
     	    return Some(user)
     	}
     	None
     }
+    
+    def addUser(userID: Int, email: String, password: String, firstName: String, lastName: String, role: Role): Option[User] = {
+    	if(!this.map.contains(email)){
+    		val user = userFactory.create(userID, email, password, firstName, lastName, role)
+    		this.map += email -> user
+    	    return Some(user)
+    	}
+    	None
+    }    
     
     def requestMembership(requestee: User): Unit={
     	if(!requestee.role.isMember){
@@ -131,7 +151,6 @@ trait DefaultUserRepositoryComponent extends UserRepositoryComponent {
     	val resourceOption = resourceMap.get(itemID)
     	if(!resourceOption.isEmpty && requester.role.isMember){
     	  val resource = resourceOption.get
-    	  
     	  val reservation = reservationFactory.create(resource, requester)
     		resource.reservations = resource.reservations :+ reservation
     		resourceMap.put(resource.resourceID, resource)
