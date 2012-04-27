@@ -1,25 +1,28 @@
-@(message: String)
+@(message: String, items: List[Resource])
 @import helper._
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
+			
+			@if(items.isEmpty) {
+  			<h1>No reservations are present</h1>
+			} else {
 			<ul>
-			<li><!-- put in item ID -->
-			@form(routes.Staff.deleteItem(1)) {
-            <input type="submit" value="Delete">               
-             }                            
-            </li>
-            <li><!-- put in item ID -->
-			@form(routes.Staff.editItem(1)) {
-            <input type="submit" value="Edit">               
-             }                            
-            </li>
+        		@items.map { reservation =>
+            	<li>
+                @item.name.
+				@item.description.
+                @form(routes.Staff.deleteReservation(item.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+        	}
+    		</ul>
 			
 			
 			
-			</ul>			
 		</div>
 	  </div>
 	</div> <!-- /container -->

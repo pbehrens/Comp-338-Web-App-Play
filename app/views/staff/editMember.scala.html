@@ -1,4 +1,4 @@
-@(message: String)
+@(message: String, memberEditForm[(String, String, String, String, String)
 @import helper._
 
 @main("") {
@@ -11,11 +11,17 @@
             <input type="submit" value="Delete">               
              }                            
             </li>
-            <li><!-- put in member ID -->
-			@form(routes.Staff.editMember(1)) {
+            
+            @form(routes.Staff.editMember) {
+            @inputText(memberEditForm("name"))
+            @inputText(memberEditForm("email"))
+            @inputText(memberEditForm("password"))
+            @inputText(memberEditForm("firstName"))
+            @inputText(memberEditForm("lastName"))
+			@form(routes.Staff.editMemeber(item.id)) {
             <input type="submit" value="Edit">               
-             }                            
-            </li>
+             } 
+            }                           
 			
 			
 			

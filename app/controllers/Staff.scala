@@ -36,6 +36,7 @@ trait StaffController  {
     
     val memberEditForm = Form(
     tuple("email" -> nonEmptyText,
+    	  "password" -> nonEmptyText,
     	  "firstName" -> nonEmptyText,
     	  "lastName" -> nonEmptyText,
     	  "role" -> nonEmptyText)  

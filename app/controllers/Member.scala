@@ -28,31 +28,32 @@ trait MemberController extends Controller with Secured {
      
     val memberEditForm = Form(
     tuple("email" -> nonEmptyText,
+    	  "password" -> nonEmptyText,
     	  "firstName" -> nonEmptyText,
-    	  "lastName" -> nonEmptyText,
-    	  "role" -> nonEmptyText)  
+    	  "lastName" -> nonEmptyText
+    	   )  
     )
   
   
 //++++++++++++++++Actions+++++++++++++++++++++
     def viewReservations = Action{
 
-    Ok(views.html.index(""))
+    Ok(views.html.index(""))//TODO add style to page
 
 	}
 	
-	def deleteReservation() = Action{
+	def deleteReservation() = Action{ //TODO make sure everything works with reservation ID
 
 	Ok(views.html.index(""))
 
 	}
 	
-	def makeReservation() = Action{
+	def makeReservation() = Action{//TODO implement
     Ok(views.html.index(""))
 
 	}
 		
-	def viewItems = Action{
+	def viewItems = Action{ //TODO implement
     Ok(views.html.index(""))
 	
 	}
