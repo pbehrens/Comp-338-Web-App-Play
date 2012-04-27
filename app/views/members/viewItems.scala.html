@@ -1,16 +1,17 @@
 @(message: String)
+@import helper._
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
-		<ul>
+			<ul>
 			<li><!-- put in item ID -->
 			@form(routes.Member.makeReservation()) {
             <input type="submit" value="Delete">               
              }                            
             </li>
-		</ul>
+			</ul>			
 		</div>
 	  </div>
 	</div> <!-- /container -->

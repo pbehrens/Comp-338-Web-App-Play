@@ -26,4 +26,6 @@ in login.scala.html
             } 
             
             check example
+
             
+            modify IsAuthenticated method in secured
