@@ -12,5 +12,10 @@ trait DefaultEmailServiceComponent extends EmailServiceComponent {
   
   class DefaultEmailService extends EmailService{
 	 //TODO provide implementation of currently nonexistent EmailService Functions
+    
+    
+    def reservationNotify(member: User, resource: Resource, reservation: Reservation): Unit={}
+    
+    def expirationNotify(member: User, resource: Resource, reservation: Reservation): Unit ={}
   }
 }

@@ -11,9 +11,15 @@ import models.services.impl._
 
 
 
-trait StaffController extends Controller with Secured {
- 
+trait StaffController  {
+	this: AuthenticationServiceComponent with StaffServiceComponent =>
+	  
+  val staffService: StaffService
+  val authenticationService: AuthenticationService
   
+  object Staff extends StaffController with Controller with Secured with AuthenticationServiceComponent with StaffServiceComponent {
+    override val staffService = Registry.staffService
+    override val authenticationService = Registry.authenticationService
   //================Forms===================
   val reservationForm = Form(
     	tuple(
@@ -40,7 +46,8 @@ trait StaffController extends Controller with Secured {
     
     
     def viewReservations = Action{
-	  //get list of all reservations and return as argument for 
+	  //get list of all reservations and return as argument fo
+	  val reservs = Registry.userRepository.getReservations
 	  Ok(views.html.staff.viewReservations(""))
 	}
 	
@@ -48,8 +55,10 @@ trait StaffController extends Controller with Secured {
 	  //delete reservation
 		Redirect(routes.Staff.viewReservations)
 	}
+	
 	def addReservation() = Action{
 	  //add reservation to depot generate id for it and add to repo 
+	  
 	Redirect(routes.Staff.viewReservations)
 	}
 	
@@ -101,6 +110,7 @@ trait StaffController extends Controller with Secured {
 	def addMember() = Action{ 
 	Redirect(routes.Staff.viewMembers)
 	}	 
+	
+	}
 }
 
-object Staff extends StaffController

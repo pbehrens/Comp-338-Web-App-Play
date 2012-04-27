@@ -18,7 +18,8 @@ GET		/staff/members				controllers.Staff.viewMembers
 
 
 POST    /staff/items/:id/delete            	controllers.Staff.deleteItem(id: Int)
-POST    /staff/reservations/:id/delete     	controllers.Staff.deleteMember(id: Int)
+POST    /staff/member/:id/delete     	controllers.Staff.deleteMember(id: Int)
+POST    /staff/reservations/:id/delete     	controllers.Staff.deleteReservation(id: Int)
 
 POST    /staff/items        				controllers.Staff.addItem
 POST    /staff/reservations        			controllers.Staff.addReservation

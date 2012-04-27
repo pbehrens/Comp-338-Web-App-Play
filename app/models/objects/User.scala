@@ -20,7 +20,7 @@ trait User {
     /**
    * Authenticate a User.
    */
-  def authenticate(email: String, password: String): Option[User]
+//  def authenticate(email: String, password: String): Option[User]
   
   
 }

@@ -7,6 +7,7 @@ import play.api.data._
 import play.api.data.Forms._
 import models.services._
 import models.services.impl._
+import views._
 
 trait AuthController extends Controller {
 	this: AuthenticationServiceComponent=>

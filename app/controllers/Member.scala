@@ -12,7 +12,10 @@ import models.services.impl._
 
 
 trait MemberController extends Controller with Secured {
-  this: MemberServiceComponent =>
+  this: MemberServiceComponent with AuthenticationServiceComponent=>
+    
+  val memberService = Registry.memberService
+  val authenticationService = Registry.authenticationService
  
   
   //================Forms===================
@@ -60,8 +63,4 @@ trait MemberController extends Controller with Secured {
 	}
 }
 
-object Member extends MemberController with DefaultMemberServiceComponent
-  with DefaultUserRepositoryComponent
-  with DefaultUserFactoryComponent
-  with DefaultResourceFactoryComponent
-  with DefaultReservationFactoryComponent
+object Member extends MemberController with MemberServiceComponent with AuthenticationServiceComponent
