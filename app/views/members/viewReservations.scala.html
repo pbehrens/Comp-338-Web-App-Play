@@ -12,16 +12,13 @@
         		@reservations.map { reservation =>
             	<li>
                 @reservation.resourceReserved.name
-				@reservation.resourceReserved.currentMember
-                @form(routes.Staff.deleteReservation(reservation.id)) {
+                @reservation.date,toString()
+                @form(routes.Member.deleteReservation(reservation.id)) {
                     <input type="submit" value="Delete">
                 }
             	</li>
         	}
     		</ul>
-
-
-
 		</div>
 	  </div>
 	</div> <!-- /container -->

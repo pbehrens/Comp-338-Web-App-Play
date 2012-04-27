@@ -13,7 +13,7 @@
             	<li>
                 @reservation.resourceReserved.name
 				@reservation.resourceReserved.currentMember
-                @form(routes.Staff.deleteReservation(reservation.id)) {
+                @form(routes.Member.deleteReservation(reservation.id)) {
                     <input type="submit" value="Delete">
                 }
             	</li>

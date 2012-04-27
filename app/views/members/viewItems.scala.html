@@ -1,17 +1,23 @@
-@(message: String)
+@(message: String, items: List[Resource]) <!-- user needed so user id can be used to add reservartion -->
 @import helper._
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
+		@if(items.isEmpty) {
+  			<h1>No items are present</h1>
+			} else {
 			<ul>
-			<li><!-- put in item ID -->
-			@form(routes.Member.makeReservation()) {
-            <input type="submit" value="Delete">               
-             }                            
-            </li>
-			</ul>			
+        		@items.map { item =>
+            	<li>
+                @item.name
+                @form(routes.Member.makeReservation(item.id)) {
+                    <input type="submit" value="Add">
+                }
+            	</li>
+        	}
+    		</ul>		
 		</div>
 	  </div>
 	</div> <!-- /container -->

@@ -1,0 +1,23 @@
+@(message: String, item: Resource, itemForm: Form[(name: String, description: String)])
+@import helper._
+
+@main("") {
+    <div class="container secret-container">
+	  <div class="row">
+	    <div class="span12">
+=			<ul>
+            	<li>
+            	@form(routes.Staff.editItem) {
+           		@inputText(userForm("email"))
+            	@inputText(userForm("password"))
+				@inputText(userForm("firstName"))
+				@inputText(userForm("lastName"))
+				@form(routes.Member.editUserInfo(itemForm)) {
+            	<input type="submit" value="Edit">               
+             	}                            
+            	</li>
+			</ul>			
+		</div>
+	  </div>
+	</div> <!-- /container -->
+}
