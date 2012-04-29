@@ -1,4 +1,4 @@
-@(message: String, item: Resource, itemForm: Form[(name: String, description: String)])
+@(message: String)
 @import helper._
 
 @main("") {
@@ -7,27 +7,7 @@
 	    <div class="span12">
 
 			
-			<ul>
-			<li>
-			@form(routes.Staff.deleteItem(item.id)) {
-            <input type="submit" value="Delete">               
-             }                            
-            </li>
-            
-            <li>
-            
-            @form(routes.Staff.editItem) {
-            @inputText(itemForm("name"))
-            @inputText(itemForm("description"))
-			@form(routes.Staff.editItem(item.id)) {
-            <input type="submit" value="Edit">               
-             } 
-            }                           
-            </li>
 			
-			
-			
-			</ul>			
 		</div>
 	  </div>
 	</div> <!-- /container -->

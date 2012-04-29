@@ -1,4 +1,4 @@
-@(message: String, items: List[Resource])
+@(message: String)
 @import helper._
 
 @main("") {
@@ -6,20 +6,7 @@
 	  <div class="row">
 	    <div class="span12">
 			
-			@if(items.isEmpty) {
-  			<h1>No reservations are present</h1>
-			} else {
-			<ul>
-        		@items.map { reservation =>
-            	<li>
-                @item.name.
-				@item.description.
-                @form(routes.Staff.deleteReservation(item.id)) {
-                    <input type="submit" value="Delete">
-                }
-            	</li>
-        	}
-    		</ul>
+			
 			
 			
 			

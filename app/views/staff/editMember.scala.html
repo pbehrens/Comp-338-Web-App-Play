@@ -1,31 +1,11 @@
-@(message: String, memberEditForm[(String, String, String, String, String)
+@(message: String)
 @import helper._
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
-			<ul>
-			<li><!-- put in member ID -->
-			@form(routes.Staff.deleteMember(1)) {
-            <input type="submit" value="Delete">               
-             }                            
-            </li>
-            
-            @form(routes.Staff.editMember) {
-            @inputText(memberEditForm("name"))
-            @inputText(memberEditForm("email"))
-            @inputText(memberEditForm("password"))
-            @inputText(memberEditForm("firstName"))
-            @inputText(memberEditForm("lastName"))
-			@form(routes.Staff.editMemeber(item.id)) {
-            <input type="submit" value="Edit">               
-             } 
-            }                           
-			
-			
-			
-			</ul>			
+
 		</div>
 	  </div>
 	</div> <!-- /container -->

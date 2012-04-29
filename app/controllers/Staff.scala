@@ -16,6 +16,7 @@ trait StaffController  {
 	  
   val staffService: StaffService
   val authenticationService: AuthenticationService
+}
   
   object Staff extends StaffController with Controller with Secured with AuthenticationServiceComponent with StaffServiceComponent {
     override val staffService = Registry.staffService
@@ -48,7 +49,6 @@ trait StaffController  {
     
     def viewReservations = Action{
 	  //get list of all reservations and return as argument fo
-	  val reservs = Registry.userRepository.getReservations
 	  Ok(views.html.staff.viewReservations(""))
 	}
 	
@@ -112,6 +112,5 @@ trait StaffController  {
 	Redirect(routes.Staff.viewMembers)
 	}	 
 	
-	}
 }
 

@@ -1,0 +1,263 @@
+contrllers.staff
+viewreservations
+
+		
+		@if(reservations.isEmpty) {
+  			<h1>No reservations are present</h1>
+			} else {
+			<ul>
+        		@reservations.map { reservation =>
+            	<li>
+                @reservation.resourceReserved.name
+				@reservation.resourceReserved.currentMember
+                @form(routes.Staff.deleteReservation(reservation.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+                }
+        	}
+    		</ul>
+    		
+    		
+    		
+    		
+    		
+  edit item staff.
+  
+  <ul>
+			<li>
+			@form(routes.Staff.deleteItem(item.id)) {
+            <input type="submit" value="Delete">               
+             }                            
+            </li>
+            
+            <li>
+            
+            @form(routes.Staff.editItem) {
+            @inputText(itemForm("name"))
+            @inputText(itemForm("description"))
+			@form(routes.Staff.editItem(item.id)) {
+            <input type="submit" value="Edit">               
+             } 
+            }                           
+            </li>
+			
+			
+			
+			</ul>			
+			
+			
+viewmembers staff
+@if(members.isEmpty) {
+  			<h1>No members are present</h1>
+			} else {
+			<ul>
+        		@members.map { reservation =>
+            	<li>
+                @member.firstName <br>
+                @member.firstName
+				@member.email.
+                @form(routes.Staff.deleteMember(member.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+                }
+        	}
+    		</ul>	
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		mebers view reservations
+    		
+		@if(reservations.isEmpty) {
+  			<h1>No reservations are present</h1>
+			} else {
+			<ul>
+        		@reservations.map { reservation =>
+            	<li>
+                @reservation.resourceReserved.name
+                @reservation.date,toString()
+                @form(routes.Member.deleteReservation(reservation.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+                }
+        	}
+    		</ul>
+    		
+    		
+    		
+    		
+    		
+    		members view items 
+    		@if(items.isEmpty) {
+  			<h1>No items are present</h1>
+			} else {
+			<ul>
+        		@items.map { item =>
+            	<li>
+                @item.name
+                @form(routes.Member.makeReservation(item.id)) {
+                    <input type="submit" value="Add">
+                }
+            	</li>
+                }
+        	}
+    		</ul>		
+    		
+    		
+    		
+  members edit info
+  <ul>
+            	<li>
+            	@form(routes.Staff.editItem) {
+           		@inputText(userForm("email"))
+            	@inputText(userForm("password"))
+				@inputText(userForm("firstName"))
+				@inputText(userForm("lastName"))
+				@form(routes.Member.editUserInfo(itemForm)) {
+            	<input type="submit" value="Edit">               
+             	}                            
+            	</li>
+           		}
+			</ul>
+			
+			
+			
+			members deletereservations
+			
+			@if(reservations.isEmpty) {
+  			<h1>No reservations are present</h1>
+			} else {
+			<ul>
+        		@reservations.map { reservation =>
+            	<li>
+                @reservation.resourceReserved.name
+				@reservation.resourceReserved.currentMember
+                @form(routes.Member.deleteReservation(reservation.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+                }
+        	}
+    		</ul>
+			
+			
+			
+			
+			
+			
+			
+			staff edititem
+			
+			<ul>
+			<li>
+			@form(routes.Staff.deleteItem(item.id)) {
+            <input type="submit" value="Delete">               
+             }                            
+            </li>
+            
+            <li>
+            
+            @form(routes.Staff.editItem) {
+            @inputText(itemForm("name"))
+            @inputText(itemForm("description"))
+			@form(routes.Staff.editItem(item.id)) {
+            <input type="submit" value="Edit">               
+             } 
+            }                           
+            </li>
+			
+			
+			
+			</ul>
+			
+			
+			
+			
+			
+			staff edit member
+						<ul>
+			<li><!-- put in member ID -->
+			@form(routes.Staff.deleteMember(1)) {
+            <input type="submit" value="Delete">               
+             }                            
+            </li>
+            
+            @form(routes.Staff.editMember) {
+            @inputText(memberEditForm("name"))
+            @inputText(memberEditForm("email"))
+            @inputText(memberEditForm("password"))
+            @inputText(memberEditForm("firstName"))
+            @inputText(memberEditForm("lastName"))
+			@form(routes.Staff.editMemeber(item.id)) {
+            <input type="submit" value="Edit">               
+             } 
+            }                           
+			
+			
+			
+			</ul>			
+			
+			
+			
+			
+			staff view items
+			
+			@if(items.isEmpty) {
+  			<h1>No reservations are present</h1>
+			} else {
+			<ul>
+        		@items.map { reservation =>
+            	<li>
+                @item.name.
+				@item.description.
+                @form(routes.Staff.deleteReservation(item.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+                }
+        	}
+    		</ul>
+    		
+    		
+    		
+    		
+    		staff view members
+    		
+    		@if(members.isEmpty) {
+  			<h1>No members are present</h1>
+			} else {
+			<ul>
+        		@members.map { reservation =>
+            	<li>
+                @member.firstName <br>
+                @member.firstName
+				@member.email.
+                @form(routes.Staff.deleteMember(member.id)) {
+                    <input type="submit" value="Delete">
+                }
+            	</li>
+                }
+        	}
+    		</ul>	
+    		'
+    		
+    		
+    		
+    		
+    		
+    		
+    		views.member.scala.html
+    		
+    				<ul>
+			<li><!-- put in item ID -->
+			@form(routes.Member.makeReservation()) {
+            <input type="submit" value="Delete">               
+             }                            
+            </li>
+		</ul>						

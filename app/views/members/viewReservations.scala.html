@@ -1,24 +1,10 @@
-@(message: String, reservations: List[Reservations])
+@(message: String)
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
 		
-		@if(reservations.isEmpty) {
-  			<h1>No reservations are present</h1>
-			} else {
-			<ul>
-        		@reservations.map { reservation =>
-            	<li>
-                @reservation.resourceReserved.name
-                @reservation.date,toString()
-                @form(routes.Member.deleteReservation(reservation.id)) {
-                    <input type="submit" value="Delete">
-                }
-            	</li>
-        	}
-    		</ul>
 		</div>
 	  </div>
 	</div> <!-- /container -->
