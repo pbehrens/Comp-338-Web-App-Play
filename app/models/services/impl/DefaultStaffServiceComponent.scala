@@ -7,7 +7,7 @@ import models.objects._
 trait DefaultStaffServiceComponent extends StaffServiceComponent {
   this: UserRepositoryComponent /*with NotificationServiceComponent*/ =>
     
-  def staffService = new DefaultStaffService
+//  def staffService = new DefaultStaffService
   
   
   class DefaultStaffService extends StaffService{

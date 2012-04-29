@@ -19,8 +19,8 @@ trait StaffController  {
 }
   
   object Staff extends StaffController with Controller with Secured with AuthenticationServiceComponent with StaffServiceComponent {
-    override val staffService = Registry.staffService
-    override val authenticationService = Registry.authenticationService
+    val staffService = Registry.staffService.asInstanceOf[StaffService]
+    val authenticationService = Registry.authenticationService.asInstanceOf[AuthenticationService]
   //================Forms===================
   val reservationForm = Form(
     	tuple(

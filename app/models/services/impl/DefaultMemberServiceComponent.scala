@@ -7,7 +7,7 @@ import models.objects._
 trait DefaultMemberServiceComponent extends MemberServiceComponent {
   this: UserRepositoryComponent =>
   
-  def memberService = new DefaultMemberService
+//  def memberService = new DefaultMemberService
   
   class DefaultMemberService extends MemberService {
     def reserveResource(requester: User, itemID: Int) = userRepository.addReservation(requester, itemID)

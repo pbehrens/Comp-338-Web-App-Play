@@ -15,8 +15,9 @@ import models.services.impl._
 
 
 trait ApplicationController extends Controller with Secured {
-	this: UserRepositoryComponent with UserFactoryComponent with AuthenticationServiceComponent=>
+	this: AuthenticationServiceComponent =>
 	
+	val authenticationService = Registry.authenticationService.asInstanceOf[AuthenticationService]
    
 //===========Authentication================//
   
@@ -28,11 +29,6 @@ trait ApplicationController extends Controller with Secured {
   def index = Action {
     
 	  Ok(views.html.index("")) 
-	}
-	
-	def guest = Action{
-	  //get list of all items
-	  Ok(views.html.guest("")) 
 	}
 	
 	def member = Action{
@@ -72,8 +68,5 @@ trait Secured extends AuthenticationServiceComponent {
   }
 }
 
-object Application extends ApplicationController with DefaultUserRepositoryComponent
-  with DefaultUserFactoryComponent
-  with DefaultResourceFactoryComponent
-  with DefaultReservationFactoryComponent
-  with DefaultAuthenticationServiceComponent
+object Application extends ApplicationController
+  with AuthenticationServiceComponent

@@ -1,6 +1,7 @@
 package controllers
 import models.services._
 import models.services.impl._
+import models.services.impl.DefaultStaffServiceComponent
 
 
 object Registry extends DefaultUserRepositoryComponent
@@ -13,10 +14,10 @@ object Registry extends DefaultUserRepositoryComponent
                    with DefaultEmailServiceComponent
                    with DefaultAuthenticationServiceComponent
   {
-  override val userRepository = new DefaultUserRepository()
-  override val memberService = new DefaultMemberService()
-  override val staffService = new DefaultStaffService()
-  override val guestService = new DefaultGuestService()
-  override val emailService = new DefaultEmailService()
-  val authenticaionService = new DefaultAuthenticationService()
+  val userRepository:UserRepository = new DefaultUserRepository()
+  val memberService:MemberService = new DefaultMemberService()
+  val staffService:StaffService = new DefaultStaffService
+  val guestService:GuestService = new DefaultGuestService()
+  val emailService:EmailService = new DefaultEmailService()
+  val authenticationService:AuthenticationService = new DefaultAuthenticationService()
 }

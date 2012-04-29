@@ -14,8 +14,8 @@ trait DefaultUserRepositoryComponent extends UserRepositoryComponent {
   /**
    * An instance that gets initialized only if used.
    */
-  lazy val instance = new DefaultUserRepository
-  override val userRepository = instance
+//  lazy val instance = new DefaultUserRepository
+//  override val userRepository = instance
 
   class DefaultUserRepository extends UserRepository {
    

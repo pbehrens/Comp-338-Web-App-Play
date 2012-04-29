@@ -14,8 +14,8 @@ import models.services.impl._
 trait MemberController extends Controller with Secured {
   this: MemberServiceComponent with AuthenticationServiceComponent=>
     
-  val memberService = Registry.memberService
-  val authenticationService = Registry.authenticationService
+  val memberService = Registry.memberService.asInstanceOf[MemberService]
+  val authenticationService = Registry.authenticationService.asInstanceOf[AuthenticationService]
  
   
   //================Forms===================

@@ -2,6 +2,7 @@ target
 project/boot
 project/target
 project/plugins/target
+bin
 *~
 .target
 .settings

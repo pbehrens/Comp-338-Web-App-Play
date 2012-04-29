@@ -11,7 +11,14 @@ object ApplicationBuild extends Build {
       // Add your project dependencies here,
     )
 
-    val main = PlayProject(appName, appVersion, appDependencies).settings(defaultScalaSettings:_*).settings()
+    val main = PlayProject(appName, appVersion, appDependencies).settings(defaultScalaSettings:_*).settings(
+    templatesImport += "models.objects.Resource" 
+
+    
+    
+    
+    
+    )
 
     
 

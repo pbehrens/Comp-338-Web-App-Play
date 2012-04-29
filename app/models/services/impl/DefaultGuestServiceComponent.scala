@@ -8,7 +8,7 @@ import models.objects._
 trait DefaultGuestServiceComponent extends GuestServiceComponent {
   this: UserRepositoryComponent =>
    
-  def guestService = new DefaultGuestService
+//  def guestService = new DefaultGuestService
   
   class DefaultGuestService extends GuestService{
     def getAvailableResources = userRepository.getNonReservedResources()

@@ -8,7 +8,7 @@ import models.objects.NullUser
 trait DefaultAuthenticationServiceComponent extends AuthenticationServiceComponent{
   this: UserRepositoryComponent =>
     
-  def authenticationService = new DefaultAuthenticationService
+//  def authenticationService = new DefaultAuthenticationService
   
   class DefaultAuthenticationService extends AuthenticationService {
    

@@ -8,7 +8,7 @@ import models.objects._
 trait  DefaultAdminServiceComponent extends AdminServiceComponent {
 //  this: UserRepositoryComponent =>
    
-  def adminService = new DefaultAdminService
+//  def adminService = new DefaultAdminService
   
   class DefaultAdminService extends AdminService{
 	 //TODO provide implementation of Admin Service functions

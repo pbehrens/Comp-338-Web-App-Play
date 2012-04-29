@@ -12,6 +12,8 @@ import views._
 trait AuthController extends Controller {
 	this: AuthenticationServiceComponent=>
 	  
+	val authenticationService = Registry.authenticationService.asInstanceOf[AuthenticationService]
+	  
 val form = Form(
     tuple(
       "email" -> text,
@@ -48,8 +50,4 @@ val form = Form(
   }
 }
 
-object Auth extends AuthController with DefaultUserRepositoryComponent
-  with DefaultUserFactoryComponent
-  with DefaultResourceFactoryComponent
-  with DefaultReservationFactoryComponent
-  with DefaultAuthenticationServiceComponent
+object Auth extends AuthController with AuthenticationServiceComponent

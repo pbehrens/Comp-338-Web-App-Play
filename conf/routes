@@ -8,7 +8,7 @@ GET     /logout                             controllers.Auth.logout
 
 # Home page
 GET     /                           controllers.Application.index
-GET		/guest						controllers.Application.guest
+GET		/guest						controllers.Guest.viewItems
 GET		/member						controllers.Application.member
 GET		/staff						controllers.Application.staff
 
