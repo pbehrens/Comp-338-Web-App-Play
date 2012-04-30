@@ -1,10 +1,24 @@
-@(message: String)
+@(message: String, reservations: List[Reservation])
+@import helper._
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
-		
+		@if(reservations.isEmpty) {
+  			<h1>No items are present</h1>
+			} else {
+			<ul>
+        		@reservations.map { reserv =>
+            	<li>
+                @reserv.resourceReserved.name
+                @form(routes.Member.makeReservation()) {
+                    <input type="submit" value="Add">
+                }
+            	</li>
+                }
+        	}
+    		</ul>		
 		</div>
 	  </div>
 	</div> <!-- /container -->

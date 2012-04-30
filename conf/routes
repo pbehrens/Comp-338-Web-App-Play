@@ -30,10 +30,11 @@ POST	/staff/items/:id/edit				controllers.Staff.editItem(id: Int)
 POST	/staff/members/:id/edit				controllers.Staff.editMember(id: Int)
 
 
-GET		/member								controllers.Member.viewReservations()
+GET		/member/reservations				controllers.Member.viewReservations()
 GET		/member								controllers.Member.deleteReservation()
 GET		/member								controllers.Member.makeReservation()
 GET		/member								controllers.Member.editUserInfo()
+GET		/member/items								controllers.Member.viewItems
 
 
 

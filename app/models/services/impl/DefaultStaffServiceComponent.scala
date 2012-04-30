@@ -25,5 +25,6 @@ trait DefaultStaffServiceComponent extends StaffServiceComponent {
     def viewReservations(): List[Reservation] = {userRepository.getReservations}
     def deleteReservation(oldReservation: Reservation): Boolean = {userRepository.removeReservation(oldReservation)}
     def deleteReservations(oldReservations: List[Reservation]): Boolean = oldReservations.map(userRepository.removeReservation(_)).reduceLeft((a,b) => a&&b)    
+    def viewMembers():List[User ] = {userRepository.getAllUsers.filter(_.role.isMember == true)}
   }
 }

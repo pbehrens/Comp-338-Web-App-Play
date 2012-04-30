@@ -12,8 +12,11 @@ object ApplicationBuild extends Build {
     )
 
     val main = PlayProject(appName, appVersion, appDependencies).settings(defaultScalaSettings:_*).settings(
-    templatesImport += "models.objects.Resource" 
-
+//    templatesImport += "models.objects.Reservation" 
+//    templatesImport += "models.objects.Resource"
+//    templatesImport += "models.objects.User"
+//    templatesImport += "models.objects.Role"
+      templatesImport += "models.objects._"
     
     
     

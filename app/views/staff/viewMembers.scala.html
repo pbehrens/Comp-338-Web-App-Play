@@ -1,11 +1,22 @@
-@(message: String)
+@(message: String, members: List[User])
 @import helper._
 
 @main("") {
     <div class="container secret-container">
 	  <div class="row">
 	    <div class="span12">
-			
+		@if(members.isEmpty) {
+  			<h1>No members are present</h1>
+			} else {
+			<ul>
+        		@members.map { member =>
+            	<li>
+                @member.userID
+                
+            	</li>
+                }
+        	}
+    		</ul>			
 		</div>
 	  </div>
 	</div> <!-- /container -->

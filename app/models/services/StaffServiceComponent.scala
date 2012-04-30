@@ -18,6 +18,7 @@ trait StaffServiceComponent {
     def viewReservations(): List[Reservation]
     def deleteReservation(oldReservation: Reservation): Boolean
     def deleteReservations(oldReservations: List[Reservation]): Boolean
+    def viewMembers():List[User]
   }
   
 }

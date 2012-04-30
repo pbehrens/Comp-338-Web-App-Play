@@ -38,7 +38,7 @@ trait MemberController extends Controller with Secured {
 //++++++++++++++++Actions+++++++++++++++++++++
     def viewReservations = Action{
 
-    Ok(views.html.index(""))//TODO add style to page
+    Ok(views.html.members.index(""))//TODO add style to page
 
 	}
 	
@@ -54,7 +54,10 @@ trait MemberController extends Controller with Secured {
 	}
 		
 	def viewItems = Action{ //TODO implement
-    Ok(views.html.index(""))
+	  
+	val items = memberService.getAvailableResources
+
+    Ok(views.html.members.viewItems("", items))
 	
 	}
 	

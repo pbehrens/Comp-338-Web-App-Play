@@ -260,4 +260,32 @@ viewmembers staff
             <input type="submit" value="Delete">               
              }                            
             </li>
-		</ul>						
+		</ul>		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		@form.globalError.map { error =>
+                <p class="error">
+                    @error.message
+                </p>
+            }
+            
+            @flash.get("success").map { message =>
+                <p class="success">
+                    @message
+                </p>
+            }				

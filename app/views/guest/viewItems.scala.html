@@ -13,9 +13,6 @@
         		@items.map { item =>
             	<li>
                 @item.name
-                @form(routes.Member.makeReservation()) {
-                    <input type="submit" value="Add">
-                }
             	</li>
                 }
         	}

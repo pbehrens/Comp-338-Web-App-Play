@@ -63,6 +63,13 @@ trait DefaultUserRepositoryComponent extends UserRepositoryComponent {
     	None
     }
     
+    def getLargestUserID(): Int = {
+      if(this.getAllUsers.size == 0){
+        return 0
+      }
+      this.getAllUsers.map{i => i.userID}.max
+    }
+    
     def addUser(userID: Int, email: String, password: String, firstName: String, lastName: String, role: Role): Option[User] = {
     	if(!this.map.contains(email)){
     		val user = userFactory.create(userID, email, password, firstName, lastName, role)

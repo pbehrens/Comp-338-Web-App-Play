@@ -94,7 +94,8 @@ trait StaffController  {
 	
 	def viewMembers() = Action{
 	  //grab list of members from user repo
-	  Ok(views.html.staff.viewMembers(""))
+	  val members = staffService.viewMembers()
+	  Ok(views.html.staff.viewMembers("", members))
 	}
 	
 	def deleteMember(id: Int) = Action{

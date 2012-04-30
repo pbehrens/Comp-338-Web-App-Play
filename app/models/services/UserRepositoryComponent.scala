@@ -17,6 +17,7 @@ trait UserRepositoryComponent {
     def getUsers(lastName: String): List[User]
     def getUsers(lastName: String, firstName: String): List[User]
     def getUser(email: String): Option[User]
+    def getLargestUserID(): Int
     def addUser(user: User): Option[User]
     def addUser(userID: Int, email: String, password: String, firstName: String, lastName: String, role: Role): Option[User]
     def requestMembership(requestee: User): Unit
