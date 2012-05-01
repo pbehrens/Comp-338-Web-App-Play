@@ -45,7 +45,7 @@ trait ApplicationController extends Controller with Secured {
 /**
  * Provide security features
  */
-trait Secured extends AuthenticationServiceComponent {
+/*trait Secured extends AuthenticationServiceComponent {
 
   def username(request: RequestHeader) = request.session.get(Security.username)
 
@@ -66,7 +66,7 @@ trait Secured extends AuthenticationServiceComponent {
       f(user)(request)
     }.getOrElse(onUnauthorized(request))
   }
-}
+}*/
 
 object Application extends ApplicationController
   with AuthenticationServiceComponent
