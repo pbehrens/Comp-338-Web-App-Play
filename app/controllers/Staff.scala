@@ -49,7 +49,8 @@ trait StaffController  {
     
     def viewReservations = Action{
 	  //get list of all reservations and return as argument fo
-	  Ok(views.html.staff.viewReservations(""))
+      val reservs = staffService.viewReservations()
+	  Ok(views.html.staff.viewReservations("", reservs))
 	}
 	
 	def deleteReservation(id: Int) = Action{
