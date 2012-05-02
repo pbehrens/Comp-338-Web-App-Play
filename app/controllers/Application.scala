@@ -26,9 +26,15 @@ trait ApplicationController extends Controller with Secured {
 
   //+++++++++++++++Main Navigation Items++++++++++++++++++++++
    
-  def index = Action {
-    
-	  Ok(views.html.index("")) 
+  def index = Action {implicit request =>
+  		session.get("email").map { email =>
+  		  	val user = authenticationService.findUser(email)
+  		  	Ok(views.html.index(user.get.email)) 
+  			}.getOrElse {
+  			Ok(views.html.index("not logged in")) 
+  
+  			}
+	   
 	}
 	
 	def member = Action{

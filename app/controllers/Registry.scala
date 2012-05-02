@@ -25,5 +25,8 @@ object Registry extends DefaultUserRepositoryComponent
   userRepository.addUser(matt)
   val pat = userFactory.create(userFactory.iDNumber, "pbehrens@luc.edu", "password", "Matthew", "Kemnetz", new Role(false, true, true, true))
   userRepository.addUser(pat)
+  userRepository.addResource(1, "Basketball", "Play basketball with it", matt)
+  userRepository.addResource(2, "Baseball", "Play baseball with it", matt)
+  userRepository.addResource(3, "Bananas", "Eat bananas", matt)
   
 }
