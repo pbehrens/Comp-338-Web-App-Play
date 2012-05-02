@@ -11,6 +11,7 @@ trait StaffServiceComponent {
     //added user to create resource
     def createResource(resourceID: Int, name: String, description: String, staffer: User): Option[Resource]
     def removeResource(oldResource: Resource): Boolean
+    def viewAllResources(): List[Resource]
     def checkIn(returnedResource: Resource): Unit
     def checkOut(returnedResource: Resource): Boolean
     def viewReservations(member: User): List[Reservation]

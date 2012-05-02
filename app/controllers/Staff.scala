@@ -11,7 +11,7 @@ import models.services.impl._
 
 
 
-trait StaffController  {
+trait StaffController {
 	this: AuthenticationServiceComponent with StaffServiceComponent =>
 	  
   val staffService: StaffService
@@ -73,7 +73,8 @@ trait StaffController  {
 	
 	def viewItems = Action{
 	 //get list of all items and return in Ok method
-	  Ok(views.html.staff.viewItems(""))
+	  val items = staffService.viewAllResources()
+	  Ok(views.html.staff.viewItems("", items))
 	}
 	
 	def deleteItem(id: Int) = Action{

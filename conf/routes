@@ -38,7 +38,7 @@ GET		/member/reservations				controllers.Member.viewReservations()
 GET		/member/werew								controllers.Member.deleteReservation()
 GET		/member/test								controllers.Member.makeReservation()
 GET		/member/were								controllers.Member.editUserInfo()
-GET		/member/items								controllers.Member.viewItems
+GET		/member/items								controllers.Member.viewAllItems
 
 
 

@@ -53,7 +53,7 @@ val form = Form(
 
 trait Secured extends AuthenticationServiceComponent {
 
-  def username(request: RequestHeader) = request.session.get(Security.username)
+  def username(request: RequestHeader) = request.session.get("email")
 
   def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Auth.login)
 
@@ -72,6 +72,41 @@ trait Secured extends AuthenticationServiceComponent {
       f(user)(request)
     }.getOrElse(onUnauthorized(request))
   }
+  
+    /**
+   * Check if the connected user is a member of this role.
+//   */
+//  def IsMemberOf(project: Long)(f: => String => Request[AnyContent] => Result) = IsAuthenticated { user => request =>
+//    if(Project.isMember(project, user)) {
+//      f(user)(request)
+//    } else {
+//      Results.Forbidden
+//    }
+//  }
+  
+  /** 
+   * Action for authenticated users.
+   */
+
+//  def IsAuthenticated(f: => User => Request[AnyContent] => Result) = {
+//    implicit request =>
+//  		session.get("email").map { email =>
+//  		  	val user = authenticationService.findUser(email)
+//  		  	Ok(views.html.index(user.get.email)) 
+//  			}.getOrElse {"not authenticated")) 
+//  
+//  			}
+//    
+//    
+//  }
+//  
+//  
+//    
+//    
+//    Security.Authenticated(username, onUnauthorized) { user =>
+//    Action(request => f(user)(request))
+//  }
+
 }
 
 object Auth extends AuthController with AuthenticationServiceComponent
