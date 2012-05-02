@@ -9,7 +9,7 @@ trait StaffServiceComponent {
   
   trait StaffService{
     //added user to create resource
-    def createResource(resourceID: Int, name: String, description: String, staffer: User): Option[Resource]
+    def createResource(name: String, description: String, staffer: User): Option[Resource]
     def removeResource(oldResource: Resource): Boolean
     def viewAllResources(): List[Resource]
     def checkIn(returnedResource: Resource): Unit
@@ -20,6 +20,8 @@ trait StaffServiceComponent {
     def deleteReservation(oldReservation: Reservation): Boolean
     def deleteReservations(oldReservations: List[Reservation]): Boolean
     def viewMembers():List[User]
+    def getResource(id: Int): Option[Resource]
+    def addMember(email: String, password: String, firstName: String, lastName: String, role: Role): Option[User]
   }
   
 }

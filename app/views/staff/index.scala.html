@@ -1,11 +1,17 @@
-@(username: String)
+@(username: String,users: List[User],items: List[Resource], memberForm: Form[(String, String, String, String)], itemForm: Form[(String, String)])
 
 @main("") {
     
     <div class="container">
 
-     
-
+    <div class="row">
+	    <div class="span6">
+			@views.html.staff.viewMembers("",users, memberForm)
+		</div>
+		<div class="span6">
+			@views.html.staff.viewItems("",items, itemForm)
+		</div>
+	<div
 
 
     </div> <!-- /container -->

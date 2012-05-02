@@ -8,7 +8,7 @@ trait UserFactoryComponent {
 
   trait UserFactory {
 
-    def create(userID: Int, email: String, password: String, firstName: String, lastName: String, role: Role): User 
+    def create( email: String, password: String, firstName: String, lastName: String, role: Role): User 
   
   }
 }

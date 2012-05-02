@@ -1,4 +1,4 @@
-@(message: String, members: List[User])
+@(message: String, members: List[User], memberForm: Form[(String, String, String, String)])
 @import helper._
 
 @main("") {
@@ -11,14 +11,25 @@
 			<ul>
         		@members.map { member =>
             	<li>
-                @member.userID
+                
                 @member.firstName
         		@member.lastName
         		@member.email
             	</li>
                 }
         	}
-    		</ul>			
+    		</ul>
+        		
+        	<h2>Add a member</h2>	
+        		@form(routes.Staff.addMember) {
+
+        @inputText(memberForm("email"))
+        @inputText(memberForm("password"))
+        @inputText(memberForm("firstName"))
+        @inputText(memberForm("lastName"))
+        <input type="submit" value="Create">
+
+    }
 		</div>
 	  </div>
 	</div> <!-- /container -->

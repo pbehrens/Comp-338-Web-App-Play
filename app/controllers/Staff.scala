@@ -35,17 +35,18 @@ trait StaffController {
     "description" -> nonEmptyText)
     )
     
-    val memberEditForm = Form(
+    val memberForm = Form(
     tuple("email" -> nonEmptyText,
     	  "password" -> nonEmptyText,
     	  "firstName" -> nonEmptyText,
-    	  "lastName" -> nonEmptyText,
-    	  "role" -> nonEmptyText)  
+    	  "lastName" -> nonEmptyText)
     )
   
   
 //++++++++++++++++Actions+++++++++++++++++++++
-    
+    def splitView = Action{
+      Ok(views.html.staff.index("", staffService.viewMembers(), staffService.viewAllResources(), memberForm, itemForm))
+    }
     
     def viewReservations = Action{
 	  //get list of all reservations and return as argument fo
@@ -74,12 +75,14 @@ trait StaffController {
 	def viewItems = Action{
 	 //get list of all items and return in Ok method
 	  val items = staffService.viewAllResources()
-	  Ok(views.html.staff.viewItems("", items))
+	  Ok(views.html.staff.viewItems("", items, itemForm))
 	}
 	
 	def deleteItem(id: Int) = Action{
 	  //grab item from repo and remove it then redirect
-	Redirect(routes.Staff.viewItems)
+	  val item = staffService.getResource(id)
+	  staffService.removeResource(item.get)
+	Redirect(routes.Staff.splitView)
 	}
 	
 	def editItem(id: Int) = Action{
@@ -90,14 +93,22 @@ trait StaffController {
 	
 	def addItem() = Action{
 	 //add reservation to depot generate id for it and add to repo
+	implicit request =>
+    itemForm.bindFromRequest.fold(
+      errors => BadRequest(views.html.error("")),
+      value => {
+        staffService.createResource(value._1,value._2, Registry.matt)
+        Redirect(routes.Staff.splitView)
+      }
+    )
 	  
-	Redirect(routes.Staff.viewItems)
+	Redirect(routes.Staff.splitView)
 	}
 	
 	def viewMembers() = Action{
 	  //grab list of members from user repo
 	  val members = staffService.viewMembers()
-	  Ok(views.html.staff.viewMembers("", members))
+	  Ok(views.html.staff.viewMembers("", members, memberForm))
 	}
 	
 	def deleteMember(id: Int) = Action{
@@ -108,11 +119,23 @@ trait StaffController {
 	def editMember(id: Int) = Action{
 	  //TODO create form for edting member and grab member by id number
 	  
-	  Ok(views.html.staff.viewItems(""))
+	  Ok(views.html.staff.editMember(""))
 	}
 	
 	def addMember() = Action{ 
-	Redirect(routes.Staff.viewMembers)
+	  	implicit request =>
+    memberForm.bindFromRequest.fold(
+      errors => BadRequest(views.html.error("")),
+      value => {
+        staffService.addMember(value._1, value._2, value._3, value._4, new Role(false, true, false, false))
+       
+        Redirect(routes.Staff.splitView)
+
+      }
+      
+      
+
+    )
 	}	 
 	
 }

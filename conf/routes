@@ -14,7 +14,7 @@ GET		/error 							controllers.Application.error
 GET		/guest						controllers.Guest.index
 
 
-GET		/staff						controllers.Application.staff
+GET		/staff						controllers.Staff.splitView
 GET		/staff/reservations			controllers.Staff.viewReservations
 GET		/staff/items				controllers.Staff.viewItems
 GET		/staff/members				controllers.Staff.viewMembers
@@ -33,8 +33,8 @@ POST	/staff/members/:id/edit				controllers.Staff.editMember(id: Int)
 
 
 
-GET     /member								controllers.Member.index()
-GET		/member/reservations				controllers.Member.viewReservations()
+GET     /member										controllers.Member.index()
+GET		/member/reservations						controllers.Member.viewReservations()
 GET		/member/werew								controllers.Member.deleteReservation()
 GET		/member/test								controllers.Member.makeReservation()
 GET		/member/were								controllers.Member.editUserInfo()

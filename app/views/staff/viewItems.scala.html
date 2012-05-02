@@ -1,4 +1,4 @@
-@(message: String, items: List[Resource]) 
+@(message: String, items: List[Resource], itemForm: Form[(String, String)]) 
 @import helper._
 
 @main("") {
@@ -12,13 +12,24 @@
         		@items.map { item =>
             	<li>
                 @item.name
-                @form(routes.Member.makeReservation()) {
-                    <input type="submit" value="Add">
+                @form(routes.Staff.deleteItem(item.resourceID)) {
+                    <input type="submit" value="Delete">
                 }
             	</li>
                 }
         	}
-    		</ul>		
+    		</ul>
+                
+                <h2>Add a new item</h2>
+
+    @form(routes.Staff.addItem) {
+
+        @inputText(itemForm("name"))
+        @inputText(itemForm("description"))
+
+        <input type="submit" value="Create">
+
+    }
 		</div>
 	  </div>
 	</div> <!-- /container -->

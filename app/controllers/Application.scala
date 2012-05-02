@@ -49,10 +49,6 @@ trait ApplicationController extends Controller with Secured {
 	  Ok(views.html.members.index("")) 
 	}
 	
-	def staff = Action{
-	  //main page for editing items and reservations
-	  Ok(views.html.staff.index(""))  
-	}
 }
 
 /**

@@ -3,23 +3,36 @@
 
 @main("") {
     <div class="container secret-container">
-	  <div class="row">
-	    <div class="span12">
-		  
-			@if(items.isEmpty) {
-  			<h1>No items are present</h1>
-			} else {
-			<ul>
-        		@items.map { item =>
-            	<li>
-                @item.name
-            	</li>
+          <div class="row">
+            <div class="span12">
+
+                        @if(items.isEmpty) {
+                        <h1>No items are present</h1>
+                        } else {
+                <table class="table table-striped">
+                    <thead>
+                          <tr>
+                            <th>Resource</th>
+                            <th>Availability</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <ul>
+                        @items.map { item =>
+                        <tr>
+                            <td>@item.name</td>
+                            @if(item.currentMember.isEmpty) {
+                              <td><span id="@item.resourceID" class="label label-success">Available</span></td>
+                            }else {
+                              <td><span id="@item.resourceID" class="label label-important">Unavailable</span></td>
+                            }
+                        </tr>
                 }
-        	}
-    		</ul>		
+                }
+                </ul>
 
 
-		</div>
-	  </div>
-	</div> <!-- /container -->
+                </div>
+          </div>
+        </div> <!-- /container -->
 }
