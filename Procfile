@@ -1,1 +1,1 @@
-web:    play run --http.port=80
+web:    play run
