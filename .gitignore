@@ -3,6 +3,15 @@ project/boot
 project/target
 project/plugins/target
 bin
+bin/
+data/
+db/
+dist/
+logs/
+test-result/
+lib/
+tmp/
+modules/
 *~
 .target
 .settings
