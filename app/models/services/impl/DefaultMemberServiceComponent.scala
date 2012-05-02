@@ -14,6 +14,7 @@ trait DefaultMemberServiceComponent extends MemberServiceComponent {
     def viewReservations(user: User) = userRepository.getReservations(user)
     def removeReservation(noLongerNeeded: Reservation) = userRepository.removeReservation(noLongerNeeded)
     def getAvailableResources = userRepository.getNonReservedResources()
+    def getAllResources: List[Resource] = userRepository.getResources()
 
   }
 }

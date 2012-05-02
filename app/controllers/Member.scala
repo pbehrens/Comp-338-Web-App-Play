@@ -36,10 +36,21 @@ trait MemberController extends Controller with Secured {
   
   
 //++++++++++++++++Actions+++++++++++++++++++++
-    def viewReservations = Action{
-
+    def index = Action{
     Ok(views.html.members.index(""))//TODO add style to page
 
+	}
+    
+    
+    def viewReservations = Action{implicit request =>
+  		session.get("email").map { email =>
+  		  	val user = authenticationService.findUser(email)
+  		  	val reservs = memberService.viewReservations(user.get)
+  		  	Ok(views.html.members.viewReservations("", reservs)) 
+  			}.getOrElse {
+  			Ok(views.html.error("not logged in")) 
+  
+  			}
 	}
 	
 	def deleteReservation() = Action{ //TODO make sure everything works with reservation ID
@@ -53,12 +64,17 @@ trait MemberController extends Controller with Secured {
 
 	}
 		
-	def viewItems = Action{ //TODO implement
+	def viewItems = Action{
 	  
 	val items = memberService.getAvailableResources
 
     Ok(views.html.members.viewItems("", items))
 	
+	}
+	
+	def viewAllItems = Action{
+	  	val items = memberService.getAllResources
+	  	Ok(views.html.members.viewItems("", items)) 
 	}
 	
 	def editUserInfo = Action{

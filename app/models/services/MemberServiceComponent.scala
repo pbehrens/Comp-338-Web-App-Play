@@ -13,7 +13,7 @@ trait MemberServiceComponent {
     def viewReservations(member: User): List[Reservation]
     def removeReservation(noLongerNeeded: Reservation): Boolean
     def getAvailableResources: List[Resource]
-
+    def getAllResources: List[Resource]
   }
   
 }

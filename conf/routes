@@ -8,14 +8,16 @@ GET     /logout                             controllers.Auth.logout
 
 # Home page
 GET     /                           controllers.Application.index
-GET		/guest						controllers.Guest.viewItems
-GET		/member						controllers.Application.member
-GET		/staff						controllers.Application.staff
+GET		/error 							controllers.Application.error
 
+
+GET		/guest						controllers.Guest.index
+
+
+GET		/staff						controllers.Application.staff
 GET		/staff/reservations			controllers.Staff.viewReservations
 GET		/staff/items				controllers.Staff.viewItems
 GET		/staff/members				controllers.Staff.viewMembers
-
 
 POST    /staff/items/:id/delete            	controllers.Staff.deleteItem(id: Int)
 POST    /staff/member/:id/delete     	controllers.Staff.deleteMember(id: Int)
@@ -30,10 +32,12 @@ POST	/staff/items/:id/edit				controllers.Staff.editItem(id: Int)
 POST	/staff/members/:id/edit				controllers.Staff.editMember(id: Int)
 
 
+
+GET     /member								controllers.Member.index()
 GET		/member/reservations				controllers.Member.viewReservations()
-GET		/member								controllers.Member.deleteReservation()
-GET		/member								controllers.Member.makeReservation()
-GET		/member								controllers.Member.editUserInfo()
+GET		/member/werew								controllers.Member.deleteReservation()
+GET		/member/test								controllers.Member.makeReservation()
+GET		/member/were								controllers.Member.editUserInfo()
 GET		/member/items								controllers.Member.viewItems
 
 

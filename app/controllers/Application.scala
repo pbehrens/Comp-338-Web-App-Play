@@ -37,14 +37,21 @@ trait ApplicationController extends Controller with Secured {
 	   
 	}
 	
+	def error = Action{
+	  
+	  
+	  Ok(views.html.error("")) 
+
+	}
+	
 	def member = Action{
 	  //get list of available items and return list to be made into html list
-	  Ok(views.html.member("")) 
+	  Ok(views.html.members.index("")) 
 	}
 	
 	def staff = Action{
 	  //main page for editing items and reservations
-	  Ok(views.html.staffpublic(""))  
+	  Ok(views.html.staff.index(""))  
 	}
 }
 

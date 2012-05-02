@@ -26,10 +26,7 @@ trait GuestController extends Controller with Secured {
   
 
   //+++++++++++++++Main Navigation Items++++++++++++++++++++++
-   
-
-	
-	def viewItems = Action{
+	def index = Action{
 	  //get list of all items
 	  val items = guestService.getAvailableResources
 	  
