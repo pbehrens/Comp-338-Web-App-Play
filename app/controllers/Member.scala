@@ -41,15 +41,13 @@ trait MemberController extends Controller with Secured {
 
 	}
     
-    
     def viewReservations = Action{implicit request =>
   		session.get("email").map { email =>
   		  	val user = authenticationService.findUser(email)
   		  	val reservs = memberService.viewReservations(user.get)
   		  	Ok(views.html.members.viewReservations("", reservs)) 
   			}.getOrElse {
-  			Ok(views.html.error("not logged in")) 
-  
+  			Ok(views.html.error("A problem has occured")) 
   			}
 	}
 	
