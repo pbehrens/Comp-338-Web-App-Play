@@ -36,12 +36,11 @@
           <a class="brand" href="./index.html">Server-side Fitness</a>
           <div class="nav-collapse">
             <ul class="nav">
-<!--              <li><a href="">Home</a></li>
-              <li><a href="" >Guest</a></li>
-              <li><a href="" >Member</a></li>
-			  <li><a href="" >Staff</a></li>
-            </ul>-->
-			<p class="navbar-text pull-right"> <a href="@routes.Auth.login()">Login</a></p>
+
+			<li><p class="navbar-text pull-right">@title</p></li>
+			<li><p class="navbar-text pull-right"> <a href="@routes.Auth.login()">Login</a></p></li>
+			<li><p class="navbar-text pull-right"> <a href="@routes.Auth.logout()">Logout</a></p></li>
+			</ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>

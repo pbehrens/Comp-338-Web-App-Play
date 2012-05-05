@@ -31,17 +31,12 @@ trait ApplicationController extends Controller with Secured {
   		  	val user = authenticationService.findUser(email)
   		  	Ok(views.html.index(user.get.email)) 
   			}.getOrElse {
-  			Ok(views.html.index("not logged in")) 
-  
+  			Ok(views.html.index("Not Logged In"))
   			}
-	   
 	}
 	
 	def error = Action{
-	  
-	  
-	  Ok(views.html.error("")) 
-
+	  Ok(views.html.error(""))
 	}
 	
 	def member = Action{

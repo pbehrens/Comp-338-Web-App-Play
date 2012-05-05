@@ -1,6 +1,6 @@
 @(username: String)
 
-@main("") {
+@main(username) {
     
     <div class="container">
 
@@ -15,17 +15,17 @@
 	    <div class="span4">
 		  <h2>Guests</h2>
 		  <p>Feel free to check out our ammenities. We've got tons of equipment, and we're confident that once you see how fast you get in and get exercising, you'll need to become a member.</p>
-		  <p><a class="btn" href="/guest" >Take a look &raquo;</a></p>
+		  <p><a class="btn" href="@routes.Guest.index()">Guest</a></p>
 		</div>
 		<div class="span4">
 		  <h2>Members</h2>
 		  <p>Your time is valuable. So make sure you can walk in, get on your machine, and walk out. We have the most technically advanced "dibs" in existance (and becuase it's online, there's no fistfight with your brother about who called it first).</p>
-		  <p><a class="btn" href="/member" >Reserve it &raquo;</a></p>
+		  <p><a class="btn" href="@routes.Member.viewAllItems()">Members</a></p>
 		</div>
 		<div class="span4">
 		  <h2>Staff</h2>
 		  <p>Some of us work here, too. After all, if nobody was here to take the medicine ball back, then who's going to make sure they don't keep rolling into the middle of the gym floor? All our staff are sphere-wrangling specialists (and we handle less regularly shaped equipment, too).</p>
-		  <p><a class="btn" href="/staff/members" >Get to work &raquo;</a></p>
+		  <p><a class="btn" href="@routes.Staff.splitView()">Staff</a></p>
 		</div>
 
     </div> <!-- /container -->
