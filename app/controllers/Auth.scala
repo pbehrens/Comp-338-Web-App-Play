@@ -88,17 +88,16 @@ trait Secured extends AuthenticationServiceComponent {
    * Action for authenticated users.
    */
 
-//  def IsAuthenticated(f: => User => Request[AnyContent] => Result) = {
-//    implicit request =>
-//  		session.get("email").map { email =>
-//  		  	val user = authenticationService.findUser(email)
-//  		  	Ok(views.html.index(user.get.email)) 
-//  			}.getOrElse {"not authenticated")) 
-//  
-//  			}
-//    
-//    
-//  }
+  def IsAuthenticated(f: => User => Request[AnyContent] => Result) = {
+  		f.get("email").map { email =>
+  		  	val user = authenticationService.findUser(email)
+  		  	Ok(views.html.index(user.get.email)) 
+  			}.getOrElse {"not authenticated")) 
+  
+  			}
+    
+    
+  }
 //  
 //  
 //    
